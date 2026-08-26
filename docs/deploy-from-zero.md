@@ -5,7 +5,16 @@
 1. Install Docker, kubectl, [kind](https://kind.sigs.k8s.io/), and [Helm](https://helm.sh/).
 2. `make kind-up`
 3. Clone [kubernetes-gitops](https://github.com/efokou-labs/kubernetes-gitops) and apply the root Application (see that README).
-4. `make kind-down` when finished. Nothing should keep running in AWS.
+4. GHCR tags are empty until CI publishes. For a local demo, build and load:
+
+```bash
+kind load docker-image ghcr.io/efokou-labs/career-workspace:dev --name portfolio
+kind load docker-image ghcr.io/efokou-labs/distributed-job-processor:dev --name portfolio
+kind load docker-image ghcr.io/efokou-labs/agentic-ai-platform:dev --name portfolio
+kind load docker-image ghcr.io/efokou-labs/observability-lab:dev --name portfolio
+```
+
+5. `make kind-down` when finished. Nothing should keep running in AWS.
 
 ## AWS sandbox (ephemeral)
 

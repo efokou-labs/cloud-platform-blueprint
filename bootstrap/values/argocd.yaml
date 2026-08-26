@@ -2,8 +2,6 @@ configs:
   params:
     server.insecure: true
 server:
-  extraArgs:
-    insecure: true
   service:
     type: ClusterIP
 dex:
