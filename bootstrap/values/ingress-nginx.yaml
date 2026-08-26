@@ -1,0 +1,7 @@
+controller:
+  replicaCount: 1
+  hostPort:
+    enabled: true
+  service:
+    type: NodePort
+  watchIngressWithoutClass: true

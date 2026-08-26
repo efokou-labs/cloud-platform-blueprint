@@ -1,0 +1,14 @@
+# Optional. kube-prometheus-stack is large for a laptop.
+# Install only when demonstrating observability-lab on kind.
+grafana:
+  enabled: true
+  adminPassword: admin
+prometheus:
+  prometheusSpec:
+    retention: 24h
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+alertmanager:
+  enabled: true

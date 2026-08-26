@@ -1,0 +1,44 @@
+name: terraform
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+      - name: fmt
+        run: |
+          set -euo pipefail
+          for d in envs/dev envs/staging envs/prod; do
+            terraform -chdir="$d" fmt -check -recursive
+          done
+      - name: init and validate
+        run: |
+          set -euo pipefail
+          for d in envs/dev envs/staging envs/prod; do
+            terraform -chdir="$d" init -backend=false -input=false
+            terraform -chdir="$d" validate
+          done
+      - uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: v0.54.0
+      - name: tflint
+        run: |
+          tflint --init
+          tflint --chdir envs/dev
+          tflint --chdir envs/staging
+          tflint --chdir envs/prod
+      - name: Checkov
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: .
+          framework: terraform
+          soft_fail: true
+          skip_check: CKV_AWS_144,CKV_AWS_118
