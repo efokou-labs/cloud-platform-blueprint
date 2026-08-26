@@ -29,7 +29,11 @@ kind-up:
 	@command -v kind >/dev/null || { echo "Install kind: https://kind.sigs.k8s.io/docs/user/quick-start/"; exit 1; }
 	@command -v helm >/dev/null || { echo "Install helm: https://helm.sh/docs/intro/install/"; exit 1; }
 	@command -v kubectl >/dev/null || { echo "Install kubectl"; exit 1; }
-	kind create cluster --name $(CLUSTER) --config hack/kind/cluster.yaml
+	@if kind get clusters | grep -qx $(CLUSTER); then \
+		echo "kind cluster '$(CLUSTER)' already exists"; \
+	else \
+		kind create cluster --name $(CLUSTER) --config hack/kind/cluster.yaml; \
+	fi
 	kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 	kubectl -n kube-system patch deploy metrics-server --type='json' \
 		-p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]' || true
