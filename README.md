@@ -52,7 +52,7 @@ make kind-down
 
 ## Repository map
 
-This repo provisions. [kubernetes-gitops](https://github.com/EtienneFokou-E18560/kubernetes-gitops) holds desired workload state. Modules are published from [terraform-modules](https://github.com/EtienneFokou-E18560/terraform-modules).
+This repo provisions. [kubernetes-gitops](https://github.com/efokou-labs/kubernetes-gitops) holds desired workload state. Modules are published from [terraform-modules](https://github.com/efokou-labs/terraform-modules).
 
 ## CI
 
@@ -65,5 +65,5 @@ App repositories may call:
 ```yaml
 jobs:
   python:
-    uses: EtienneFokou-E18560/cloud-platform-blueprint/.github/workflows/python-ci.yml@main
+    uses: efokou-labs/cloud-platform-blueprint/.github/workflows/python-ci.yml@main
 ```

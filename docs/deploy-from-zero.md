@@ -4,7 +4,7 @@
 
 1. Install Docker, kubectl, [kind](https://kind.sigs.k8s.io/), and [Helm](https://helm.sh/).
 2. `make kind-up`
-3. Clone [kubernetes-gitops](https://github.com/EtienneFokou-E18560/kubernetes-gitops) and apply the root Application (see that README).
+3. Clone [kubernetes-gitops](https://github.com/efokou-labs/kubernetes-gitops) and apply the root Application (see that README).
 4. `make kind-down` when finished. Nothing should keep running in AWS.
 
 ## AWS sandbox (ephemeral)
