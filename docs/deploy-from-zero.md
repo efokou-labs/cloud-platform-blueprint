@@ -8,7 +8,8 @@
 4. GHCR tags are empty until CI publishes. For a local demo, build and load:
 
 ```bash
-kind load docker-image ghcr.io/efokou-labs/career-workspace:dev --name portfolio
+kind load docker-image ghcr.io/efokou-labs/askel:dev --name portfolio
+kind load docker-image ghcr.io/efokou-labs/askel-web:dev --name portfolio
 kind load docker-image ghcr.io/efokou-labs/distributed-job-processor:dev --name portfolio
 kind load docker-image ghcr.io/efokou-labs/agentic-ai-platform:dev --name portfolio
 kind load docker-image ghcr.io/efokou-labs/observability-lab:dev --name portfolio
